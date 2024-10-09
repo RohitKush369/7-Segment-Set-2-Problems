@@ -1,0 +1,44 @@
+//Initially display 0 When switch 1 is pressed start displaying 0 to 9  Continuously.
+// When switch 2 is pressed stop display.
+void setup() {
+  volatile char *dirf,*dirk;
+  dirf=0x30; 
+  *dirf=0xFF;
+  dirk=0x107;
+  *dirk=0x00;
+}
+void loop() {
+volatile char *outf,*ink,x;
+volatile long i;
+outf=0x31; 
+*outf=0x3F;
+ink=0x106; 
+*ink=0x00;
+while(1){
+  x=*ink;
+  if((x&0x01)==0x01){
+   *outf=0x06;
+  for(i=0;i<200000;i++);
+  *outf=0x5B;
+  for(i=0;i<200000;i++);
+  *outf=0x4F;
+ for(i=0;i<200000;i++);
+ *outf=0x66;
+ for(i=0;i<200000;i++);
+ *outf=0x6D;
+ for(i=0;i<200000;i++);
+  *outf=0x7D;
+ for(i=0;i<200000;i++);
+ *outf=0x07;
+ for(i=0;i<200000;i++);
+ *outf=0x7F;
+ for(i=0;i<200000;i++);
+ *outf=0x6F;
+ for(i=0;i<200000;i++);
+  }
+  if((x&0x02)==0x02){
+    *outf=0x00;
+  for(i=0;i<200000;i++);
+}
+}
+}
