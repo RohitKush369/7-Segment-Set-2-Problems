@@ -1,0 +1,39 @@
+//Press any switch & display the reverse order 
+//Ex: 1 -> 8, 2-> 7, 8 -> 1
+void setup() {
+  // put your setup code here, to run once:
+  volatile char *dirf, *dirk;
+  dirf = 0x30;
+  *dirf = 0xFF;
+  dirk = 0x107;
+  *dirk = 0x00;
+}
+void loop() {
+  // put your main code here, to run repeatedly:
+  volatile char *outf, *ink, x;
+  volatile long i;
+  outf = 0x31;
+  ink = 0x106;
+  *ink = 0x00;
+  while (1) {
+    x = *ink;
+    for (i = 0; i < 100000; i++);
+    if ((x & 0x01) == 0x01)
+      *outf = 0x7F;
+    else if ((x & 0x02) == 0x02)
+      *outf = 0x07;
+    else if ((x & 0x04) == 0x04)
+      *outf = 0x7D;
+    else if ((x & 0x08) == 0x08)
+      *outf = 0x6D;
+    else if ((x & 0x10) == 0x10)
+      *outf = 0x66;
+    else if ((x & 0x20) == 0x20)
+      *outf = 0x4F;
+    else if ((x & 0x40) == 0x40)
+      *outf = 0x5B;
+    else if ((x & 0x80) == 0x80)
+      *outf = 0x06;
+  }
+  for (i = 0; i < 100000; i++);
+}
