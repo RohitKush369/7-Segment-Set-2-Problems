@@ -1,0 +1,63 @@
+//Press switch 7 & display from 0 to 9 and 9 to 0 one time.
+void setup() {
+  volatile char *dirf,*dirk;
+  dirf=0x30; //direction for port F
+  *dirf=0xFF;
+  dirk=0x107;//direction for port k
+  *dirk=0x00;
+}
+void loop() {
+volatile char *outf,*ink,x;
+volatile long i,j;
+int number=0;
+outf=0x31; //output for port F
+ink=0x106; //Input for port K
+*ink=0x00;
+while(1){
+  x=*ink;
+  if((x&0x40)==0x40){
+    *outf=0x3F;
+    for(i=0;i<200000;i++);
+    *outf=0x06;
+    for(i=0;i<200000;i++);
+    *outf=0x5B;
+    for(i=0;i<200000;i++);
+     *outf=0x4F;
+    for(i=0;i<200000;i++);
+     *outf=0x66;
+    for(i=0;i<200000;i++);
+     *outf=0x6D;
+    for(i=0;i<200000;i++);
+     *outf=0x7D;
+    for(i=0;i<200000;i++);
+     *outf=0x07;
+    for(i=0;i<200000;i++);
+     *outf=0x7F;
+    for(i=0;i<200000;i++);
+     *outf=0x6F;
+    for(i=0;i<200000;i++);
+     *outf=0x7F;
+    for(i=0;i<200000;i++);
+     *outf=0x07;
+    for(i=0;i<200000;i++);
+     *outf=0x7D;
+    for(i=0;i<200000;i++);
+     *outf=0x6D;
+    for(i=0;i<200000;i++);
+     *outf=0x66;
+    for(i=0;i<200000;i++);
+     *outf=0x4F;
+    for(i=0;i<200000;i++);
+     *outf=0x5B;
+    for(i=0;i<200000;i++);
+     *outf=0x06;
+    for(i=0;i<200000;i++);
+     *outf=0x3F;
+    for(i=0;i<200000;i++);
+  }
+  for(j=0;j<100000;j++);
+
+}
+}
+
+
