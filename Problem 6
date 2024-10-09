@@ -1,0 +1,45 @@
+//Initially display 0. When switch 1 is pressed every time increment by 1
+void setup() {
+  volatile char *dirf,*dirk;
+  dirf=0x30; 
+  *dirf=0xFF;
+  dirk=0x107;
+  *dirk=0x00;
+}
+void loop() {
+volatile char *outf,*ink,x;
+volatile long i,j;
+volatile long currentvalue=0;
+outf=0x31;
+ink=0x106; 
+*ink=0x00;
+*outf=0x3F;
+while(1){
+  x=*ink;
+  if((x&0x01)==0x01){
+     for(i=0;i<200000;i++);
+    currentvalue=(currentvalue+1)%10;
+    if(currentvalue==0)
+    *outf=0x3F;
+    else if(currentvalue==1)
+    *outf=0x06;
+    else if(currentvalue==2)
+    *outf=0x5B;
+    else if(currentvalue==3)
+    *outf=0x4F;
+     else if(currentvalue==4)
+    *outf=0x66;
+     else if(currentvalue==5)
+    *outf=0x6D;
+     else if(currentvalue==6)
+    *outf=0x7D;
+     else if(currentvalue==7)
+    *outf=0x07;
+     else if(currentvalue==8)
+    *outf=0x7F;
+     else if(currentvalue==9)
+    *outf=0x6F;
+  }
+  for(i=0;i<200000;i++);
+}
+}
